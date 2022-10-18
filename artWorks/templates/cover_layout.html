@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/dist/css/bootstrap.min.css' %}">
+    <style>
+        .navbar {
+            border-radius: 0;
+        }
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        img {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+    {% block css %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">GLOBAL ART</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/cover/completeworks/">COMPLETE WORKS</a></li>
+                <li><a href="/chart/list/">DATAN</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">您好！ {{ request.session.info.name }}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/login/">登录</a></li>
+                        <li><a href="/register/">注册</a></li>
+                        <li><a href="/userinfo/{{ request.session.info.id }}/details/">个人资料</a></li>
+                        <li><a href="#">我的信息</a></li>
+                        <li><a href="/reset/{{ request.session.info.id }}/reset/">重置密码</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/logout/">注销</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div>
+    <div class="container">
+{#        <div id="bg">#}
+{#            <img src="{% static 'img/9.jpg' %}" alt="">#}
+{#        </div>#}
+        {% block content %}{% endblock %}
+    </div>
+</div>
+<script src="{% static 'js/jquery-3.5.1/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-3.4.1/dist/js/bootstrap.min.js' %}"></script>
+{% block js %}{% endblock %}
+</body>
+</html>

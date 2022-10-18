@@ -1,0 +1,63 @@
+{% extends 'admin_layout.html' %}
+
+{% block content %}
+     <div class="container">
+        <div style="margin-bottom: 10px">
+            <a class="btn btn-success" href="/creationtype/add/">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                新建创作类型
+            </a>
+            {# 右边搜索框 #}
+            <div style="float: right">
+                {# 表单获取数据 #}
+                <form method="get">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="关键字"
+                                {# placeholder搜索框默认值，value搜索框传递值 #}
+                               value="{{ search_data }}">
+                        <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        {# 搜索图标 #}
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                    </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background:hsla(0, 0%, 50%, .25) border-box;">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                创作类型列表
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>创作类型</th>
+                    <th>艺术门类</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in queryset %}
+                    <tr>
+                        <th scope="row">{{ obj.id }}</th>
+                        <td>{{ obj.creationtype }}</td>
+                        <td>{{ obj.category }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-xs" href="/creationtype/{{ obj.id }}/edit/">编辑</a>
+                            <a class="btn btn-danger btn-xs" href="/creationtype/{{ obj.id }}/delete/">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <nav aria-label="Page navigation" class="page">
+            <ul class="pagination">
+                {{ page_string }}
+            </ul>
+        </nav>
+    </div>
+{% endblock %}
