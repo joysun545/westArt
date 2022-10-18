@@ -1,0 +1,72 @@
+{% extends 'admin_layout.html' %}
+
+{% block content %}
+     <div class="container">
+        <div style="margin-bottom: 10px">
+            <a class="btn btn-success" href="/artist/add/">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                新建艺术家
+            </a>
+            {# 右边搜索框 #}
+            <div style="float: right">
+                {# 表单获取数据 #}
+                <form method="get">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="关键字"
+                                {# placeholder搜索框默认值，value搜索框传递值 #}
+                               value="{{ search_data }}">
+                        <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        {# 搜索图标 #}
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                    </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background:hsla(0, 0%, 50%, .25) border-box;">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                艺术家列表
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>出生时间</th>
+                    <th>出生地</th>
+                    <th>艺术门类</th>
+                    <th>艺术流派</th>
+                    <th>分享者</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in queryset %}
+                    <tr>
+                        <th scope="row">{{ obj.id }}</th>
+                        <td>{{ obj.name }}</td>
+                        <td>{{ obj.gender }}</td>
+                        <td>{{ obj.birthtime }}</td>
+                        <td>{{ obj.birthplace }}</td>
+                        <td>{{ obj.artrategory }}</td>
+                        <td>{{ obj.artschools }}</td>
+                        <td>{{ request.session.info.name}}</td>
+                        <td>
+                            <a class="btn btn-primary btn-xs" href="/artist/{{ obj.id }}/edit/">编辑</a>
+                            <a class="btn btn-danger btn-xs" href="/artist/{{ obj.id }}/delete/">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <nav aria-label="Page navigation" class="page">
+            <ul class="pagination">
+                {{ page_string }}
+            </ul>
+        </nav>
+    </div>
+{% endblock %}

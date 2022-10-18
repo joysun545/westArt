@@ -1,0 +1,81 @@
+{% extends 'cover_layout.html' %}
+
+
+{% block content %}
+    <div class="container" style="background: hsla(0, 0%, 10%, .25) border-box;">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background: hsla(0, 0%, 10%, .25) border-box;">
+                <h3 class="panel-title"
+                    style="font-size: 32px; background: hsla(0, 0%, 0%, .25) border-box;text-align: center;margin-top: 15px;margin-bottom: 15px;">
+                    个 人 资 料</h3>
+            </div>
+            <div class="panel-body" style="background: hsla(0, 0%, 10%, .25) border-box;">
+
+                <form method="post" novalidate style="background: hsla(0, 0%, 10%, .25) border-box;font-size: 24px">
+                    <div class="clearfix">
+                        {#                        {% for field in form %}#}
+
+                        <div class="col-xs-12" style="display: flex">
+                            <div style="width: 33%">
+                                <label>昵称:</label>
+                                <label>{{ obj.username }}</label>
+                            </div>
+                            <div style="width: 33%">
+                                <label>姓名:</label>
+                                <label>{{ obj.name }}</label>
+                            </div>
+                            <div style="width: 33%">
+                                <label>性别:</label>
+                                <label>{{ obj.get_gender_display }}</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12" style="display: flex">
+                            <div style="width: 33%">
+                                <label>邮箱:</label>
+                                <label>{{ obj.email }}</label>
+                            </div>
+                            <div style="width: 33%">
+                                <label>手机:</label>
+                                <label>{{ obj.mobile }}</label>
+                            </div>
+                            <div style="width: 33%">
+                                <label>出生日期:</label>
+                                <label>{{ obj.birthtime|date:"Y-m-d" }}</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12" style="display: flex">
+                            <div style="width: 48%">
+                                <label>国家:</label>
+                                <label>{{ obj.country }}</label>
+                            </div>
+                            <div style="width: 48%">
+                                <label>城市:</label>
+                                <label>{{ obj.city }}</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12" style="display: flex">
+                            <div style="width: 48%">
+                                <label>毕业学院:</label>
+                                <label>{{ obj.graduated }}</label>
+                            </div>
+                            <div style="width: 48%">
+                                <label>艺术领域:</label>
+                                <label>{{ obj.artcategory }}</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <label>再说点什么:</label>
+                            <label>{{ obj.saysomethingmore }}</label>
+                        </div>
+                        {#                        {% endfor %}#}
+                    </div>
+                    {#                    <button type="submit" class="btn btn-primary" href="/userinfo/{{ request.session.info.id}}/details/">编辑</button>#}
+                    <td>
+                        <a class="btn btn-primary btn-xs" href="/userinfo/{{ request.session.info.id }}/edit/">编辑</a>
+                    </td>
+                </form>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

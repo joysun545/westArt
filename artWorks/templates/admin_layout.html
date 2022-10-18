@@ -1,0 +1,59 @@
+{# 在母板创建页面头部模板#}
+{# {% block content %}{% endblock %}可供各分页添加不同页面内容 #}
+{#  {% block css %}{% endblock %}可供各分页引入自定义CSS #}
+{# {% block js %}{% endblock %}可供各分页引入自定义JS #}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/dist/css/bootstrap.min.css' %}">
+    <style>
+        .navbar {
+            border-radius: 0;
+        }
+    </style>
+    {% block css %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/admin/list/">管理员帐户</a></li>
+                <li><a href="/user/list/">用户管理</a></li>
+                <li><a href="/creationtype/list/">创作类型管理</a></li>
+                <li><a href="/artcategory/list/">艺术门类</a></li>
+                <li><a href="/artist/list/">艺术家管理</a></li>
+                <li><a href="/schools/list/">流派管理</a></li>
+                <li><a href="/museum/list/">博物馆管理</a></li>
+                <li><a href="/completeworks/list/">艺术作品大全</a></li>
+                <li><a href="/completeworks02/list/">艺术作品大大全</a></li>
+                <li><a href="/datan/list/">数据统计</a></li>
+            </ul>
+{#            <ul class="nav navbar-nav navbar-right">#}
+{#                <li class="dropdown">#}
+{#                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"#}
+{#                       aria-expanded="false">您好！ {{ request.session.info.name }}<span class="caret"></span></a>#}
+{#                    <ul class="dropdown-menu">#}
+{#                        <li><a href="#">个人资料</a></li>#}
+{#                        <li><a href="#">我的信息</a></li>#}
+{#                        <li><a href="/admin/{{ request.session.info.id }}/reset/">重置密码</a></li>#}
+{#                        <li role="separator" class="divider"></li>#}
+{#                        <li><a href="/login/">注销</a></li>#}
+{#                    </ul>#}
+{#                </li>#}
+{#            </ul>#}
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div>
+    {% block content %}{% endblock %}
+</div>
+<script src="{% static 'js/jquery-3.5.1/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-3.4.1/dist/js/bootstrap.min.js' %}"></script>
+{% block js %}{% endblock %}
+</body>
+</html>
