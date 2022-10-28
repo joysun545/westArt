@@ -86,10 +86,14 @@ WSGI_APPLICATION = 'westArt.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'art_data',
-        'USER': 'djangoUser',
-        'PASSWORD': 'zgb67253862',
-        'HOST': '127.0.0.1',
+        # 'NAME': 'art_data',
+        'NAME': 'westartDB',
+        # 'USER': 'djangoUser',
+        'USER': 'remoteUser',
+        # 'PASSWORD': 'zgb67253862',
+        'PASSWORD': '88888888',
+        # 'HOST': '127.0.0.1',
+        'HOST': '47.92.30.203',
         'PORT': 3306
     }
 }
